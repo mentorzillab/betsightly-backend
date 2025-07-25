@@ -13,7 +13,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from database import get_db, Base, engine
 from services.apifootball_service import APIFootballService
-from api.endpoints.ml_predictions import RealMLPredictionService
+# from api.endpoints.ml_predictions import RealMLPredictionService  # Removed - replaced by enhanced pipeline
 from services.accumulator_builder import AccumulatorBuilder
 
 # Set up logging
@@ -78,7 +78,7 @@ class DailyPredictionsService:
     def __init__(self):
         """Initialize the service."""
         self.apifootball_service = APIFootballService()
-        self.ml_service = RealMLPredictionService()
+        # self.ml_service = RealMLPredictionService()  # Removed - replaced by enhanced pipeline
         self.accumulator_builder = AccumulatorBuilder()
 
         # Create tables

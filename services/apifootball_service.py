@@ -344,6 +344,31 @@ class APIFootballService:
                 else:
                     parsed_date = datetime.now()
                 
+                # Handle odds - APIFootball basic plan doesn't provide odds
+                # Use default neutral odds for prediction features
+                home_odds = 2.0  # Default neutral odds
+                draw_odds = 3.0  # Default draw odds
+                away_odds = 2.0  # Default neutral odds
+
+                # Try to extract odds if available (premium plans)
+                if "match_hometeam_odds" in fixture and fixture["match_hometeam_odds"]:
+                    try:
+                        home_odds = float(fixture["match_hometeam_odds"])
+                    except (ValueError, TypeError):
+                        pass
+
+                if "match_draw_odds" in fixture and fixture["match_draw_odds"]:
+                    try:
+                        draw_odds = float(fixture["match_draw_odds"])
+                    except (ValueError, TypeError):
+                        pass
+
+                if "match_awayteam_odds" in fixture and fixture["match_awayteam_odds"]:
+                    try:
+                        away_odds = float(fixture["match_awayteam_odds"])
+                    except (ValueError, TypeError):
+                        pass
+
                 standardized_fixture = {
                     "fixture_id": int(fixture.get("match_id", 0)),
                     "date": parsed_date.isoformat(),
@@ -353,17 +378,19 @@ class APIFootballService:
                     "home_team": fixture.get("match_hometeam_name", "Unknown Home"),
                     "away_team_id": int(fixture.get("match_awayteam_id", 0)),
                     "away_team": fixture.get("match_awayteam_name", "Unknown Away"),
-                    "home_odds": float(fixture.get("match_hometeam_score", 0)),
-                    "draw_odds": 0.0,  # APIFootball doesn't provide odds in basic plan
-                    "away_odds": float(fixture.get("match_awayteam_score", 0)),
+                    "home_odds": home_odds,
+                    "draw_odds": draw_odds,
+                    "away_odds": away_odds,
                     "status": fixture.get("match_status", ""),
                     "round": fixture.get("match_round", ""),
-                    "season": fixture.get("league_season", ""),
+                    "season": fixture.get("league_year", ""),
                     # Additional APIFootball specific fields
                     "country_name": fixture.get("country_name", ""),
                     "league_logo": fixture.get("league_logo", ""),
                     "home_team_logo": fixture.get("team_home_badge", ""),
                     "away_team_logo": fixture.get("team_away_badge", ""),
+                    # Add league for compatibility
+                    "league": fixture.get("league_name", "Unknown League"),
                 }
                 
                 standardized_fixtures.append(standardized_fixture)

@@ -52,16 +52,25 @@ def get_db():
 def init_db():
     """Initialize database with the correct schema."""
     try:
-        # Import models in correct order to avoid circular dependencies
+        # Import existing models in correct order to avoid circular dependencies
         from punter import Punter  # noqa: F401
         from bookmaker import Bookmaker  # noqa: F401
         from betting_code import BettingCode  # noqa: F401
         from fixture import Fixture  # noqa: F401
         from prediction import Prediction  # noqa: F401
 
+        # Import enhanced schema models
+        from database_schema_enhanced import (
+            CachedFixture, CachedPrediction, PredictionBatch,
+            AccumulatorCache, PredictionAnalytics
+        )  # noqa: F401
+
+        # Import daily predictions models
+        from services.daily_predictions_service import DailyPrediction, DailyPredictionSummary  # noqa: F401
+
         # Create SQLAlchemy tables (works for both SQLite and PostgreSQL)
         Base.metadata.create_all(bind=engine)
-        logger.info("SQLAlchemy tables created.")
+        logger.info("SQLAlchemy tables created (including enhanced caching tables).")
 
         # Apply database optimizations
         try:

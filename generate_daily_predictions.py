@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Generate Daily Predictions Script
-Run this once per day to generate predictions and store in database.
+Generate Daily Predictions Script - UPCOMING GAMES ONLY
+Run this once per day to generate predictions ONLY for upcoming games.
+Automatically filters out finished games.
 """
 
 import sys

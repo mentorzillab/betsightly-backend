@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 from database import get_db
 # Phase 5: Advanced ML Integration - Using sophisticated models
-from services.basic_prediction_service import basic_prediction_service
+# from services.basic_prediction_service import basic_prediction_service  # Removed - replaced by enhanced pipeline
 
 # Import advanced prediction service
 try:

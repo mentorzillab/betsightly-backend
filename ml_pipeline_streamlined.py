@@ -30,6 +30,7 @@ from utils.config import settings
 from utils.common import setup_logging, ensure_directory_exists
 from ml.advanced_feature_engineering import AdvancedFootballFeatureEngineer
 from services.api_client import FootballDataClient, APIClient
+from services.enhanced_feature_extractor import EnhancedFeatureExtractor
 
 # Set up logging
 logger = setup_logging("ml_pipeline_streamlined")
@@ -49,6 +50,7 @@ class StreamlinedMLPipeline:
         """Initialize the streamlined pipeline."""
         self.models = {}
         self.feature_engineer = AdvancedFootballFeatureEngineer()
+        self.enhanced_feature_extractor = EnhancedFeatureExtractor()
         self.api_client = None
         
         # Ensure directories exist
@@ -466,49 +468,109 @@ class StreamlinedMLPipeline:
         """
         Load the best available trained models.
 
+        Priority:
+        1. Enhanced models (62 features) from models_enhanced/
+        2. Fallback to basic models (14 features) from models/
+
         Returns:
             Dictionary of loaded models
         """
         logger.info("Loading best available models...")
 
         models = {}
-        model_types = ['xgboost', 'lightgbm', 'ensemble']
-        prediction_types = ['match_result', 'over_under', 'btts']
 
-        for model_type in model_types:
-            for pred_type in prediction_types:
-                model_path = os.path.join(settings.ml.MODEL_DIR, f"{model_type}_{pred_type}_model.joblib")
+        # Try enhanced models first (62 features)
+        enhanced_models_dir = "models_enhanced"
+        if os.path.exists(enhanced_models_dir):
+            logger.info("🚀 Loading enhanced models (62 features)...")
+            models = self._load_models_from_directory(enhanced_models_dir, "enhanced")
 
-                if os.path.exists(model_path):
-                    try:
-                        model = joblib.load(model_path)
-
-                        # Load associated scaler and encoder if they exist
-                        scaler_path = os.path.join(settings.ml.MODEL_DIR, f"{model_type}_{pred_type}_scaler.joblib")
-                        encoder_path = os.path.join(settings.ml.MODEL_DIR, f"{model_type}_{pred_type}_encoder.joblib")
-
-                        scaler = joblib.load(scaler_path) if os.path.exists(scaler_path) else None
-                        encoder = joblib.load(encoder_path) if os.path.exists(encoder_path) else None
-
-                        models[f"{model_type}_{pred_type}"] = {
-                            'model': model,
-                            'scaler': scaler,
-                            'encoder': encoder,
-                            'type': model_type,
-                            'prediction_type': pred_type
-                        }
-
-                        logger.info(f"Loaded {model_type} model for {pred_type}")
-
-                    except Exception as e:
-                        logger.error(f"Failed to load {model_type} {pred_type} model: {str(e)}")
+        # Fallback to basic models if enhanced models not available
+        if not models:
+            logger.info("⚡ Loading basic models (14 features)...")
+            models = self._load_models_from_directory(settings.ml.MODEL_DIR, "basic")
 
         if not models:
             logger.warning("No trained models found. Please run training first.")
         else:
-            logger.info(f"Loaded {len(models)} models successfully")
+            logger.info(f"✅ Loaded {len(models)} models successfully")
 
         self.models = models
+        return models
+
+    def _load_models_from_directory(self, models_dir: str, model_type_label: str) -> Dict[str, Any]:
+        """Load models from a specific directory."""
+        import pickle
+
+        models = {}
+        model_types = ['xgboost', 'lightgbm', 'ensemble', 'random_forest', 'neural_network']
+        prediction_types = ['match_result', 'over_2_5', 'over_1_5', 'over_3_5', 'btts', 'clean_sheet_home', 'clean_sheet_away', 'win_to_nil_home', 'win_to_nil_away']
+
+        for model_type in model_types:
+            for pred_type in prediction_types:
+                # Try different file extensions and naming patterns
+                possible_paths = [
+                    os.path.join(models_dir, f"{model_type}_{pred_type}_model.joblib"),
+                    os.path.join(models_dir, f"{model_type}_{pred_type}.joblib"),
+                    os.path.join(models_dir, f"{model_type}_{pred_type}.pkl"),
+                    os.path.join(models_dir, f"{model_type}_{pred_type}_model.pkl")
+                ]
+
+                model_loaded = False
+                for model_path in possible_paths:
+                    if os.path.exists(model_path):
+                        try:
+                            # Load model based on file extension
+                            if model_path.endswith('.pkl'):
+                                with open(model_path, 'rb') as f:
+                                    model = pickle.load(f)
+                            else:
+                                model = joblib.load(model_path)
+
+                            # Load associated scaler and encoder if they exist
+                            scaler_path = os.path.join(models_dir, f"{model_type}_{pred_type}_scaler.joblib")
+                            encoder_path = os.path.join(models_dir, f"{model_type}_{pred_type}_encoder.joblib")
+
+                            # Try pickle versions too
+                            if not os.path.exists(scaler_path):
+                                scaler_path = os.path.join(models_dir, f"{model_type}_{pred_type}_scaler.pkl")
+                            if not os.path.exists(encoder_path):
+                                encoder_path = os.path.join(models_dir, f"{model_type}_{pred_type}_encoder.pkl")
+
+                            scaler = None
+                            encoder = None
+
+                            if os.path.exists(scaler_path):
+                                if scaler_path.endswith('.pkl'):
+                                    with open(scaler_path, 'rb') as f:
+                                        scaler = pickle.load(f)
+                                else:
+                                    scaler = joblib.load(scaler_path)
+
+                            if os.path.exists(encoder_path):
+                                if encoder_path.endswith('.pkl'):
+                                    with open(encoder_path, 'rb') as f:
+                                        encoder = pickle.load(f)
+                                else:
+                                    encoder = joblib.load(encoder_path)
+
+                            models[f"{model_type}_{pred_type}"] = {
+                                'model': model,
+                                'scaler': scaler,
+                                'encoder': encoder,
+                                'type': model_type,
+                                'prediction_type': pred_type,
+                                'model_source': model_type_label
+                            }
+
+                            logger.info(f"✅ Loaded {model_type}/{pred_type} ({model_type_label})")
+                            model_loaded = True
+                            break
+
+                        except Exception as e:
+                            logger.error(f"❌ Failed to load {model_path}: {str(e)}")
+                            continue
+
         return models
 
     def setup_api_client(self) -> bool:
@@ -610,8 +672,8 @@ class StreamlinedMLPipeline:
 
         for fixture in fixtures:
             try:
-                # Extract features for this fixture
-                features = self.feature_engineer.extract_fixture_features(fixture)
+                # Extract features for this fixture using enhanced extractor
+                features = self.enhanced_feature_extractor.extract_fixture_features(fixture)
 
                 if features is None:
                     continue
@@ -697,14 +759,32 @@ class StreamlinedMLPipeline:
         """Get the best model for each prediction type based on priority."""
         best_models = {}
 
-        for pred_type in ['match_result', 'over_under', 'btts']:
-            # Try models in priority order
-            for model_type in ['xgboost', 'lightgbm', 'ensemble']:
-                model_key = f"{model_type}_{pred_type}"
-                if model_key in self.models:
-                    best_models[pred_type] = self.models[model_key]
+        # Define prediction type mappings
+        prediction_mappings = {
+            'match_result': ['match_result'],
+            'over_under': ['over_2_5', 'over_1_5', 'over_3_5'],
+            'btts': ['btts'],
+            'clean_sheet_home': ['clean_sheet_home'],
+            'clean_sheet_away': ['clean_sheet_away'],
+            'win_to_nil_home': ['win_to_nil_home'],
+            'win_to_nil_away': ['win_to_nil_away']
+        }
+
+        # Model priority order (enhanced models first)
+        model_priority = ['xgboost', 'lightgbm', 'random_forest', 'neural_network', 'ensemble']
+
+        for pred_category, pred_types in prediction_mappings.items():
+            for pred_type in pred_types:
+                for model_type in model_priority:
+                    model_key = f"{model_type}_{pred_type}"
+                    if model_key in self.models:
+                        best_models[pred_category] = self.models[model_key]
+                        logger.debug(f"Selected {model_key} for {pred_category}")
+                        break
+                if pred_category in best_models:
                     break
 
+        logger.info(f"Selected {len(best_models)} best models for prediction")
         return best_models
 
     def _calculate_odds_from_confidence(self, confidence: float) -> float:
@@ -830,16 +910,84 @@ class StreamlinedMLPipeline:
 
         return results
 
+    def predict_single_fixture(self, fixture: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Generate predictions for a single fixture using enhanced models.
+
+        Args:
+            fixture: Fixture data dictionary
+
+        Returns:
+            Dictionary with prediction results in the format expected by complete pipeline
+        """
+        try:
+            # Extract features using enhanced feature extractor
+            features = self.enhanced_feature_extractor.extract_fixture_features(fixture)
+
+            if features is None:
+                return {"error": "Could not extract features"}
+
+            # Generate predictions
+            predictions = self._predict_fixture(fixture, features)
+
+            if not predictions:
+                return {"error": "No predictions generated"}
+
+            # Format results to match expected format
+            fixture_predictions = {
+                'fixture_info': {
+                    'fixture_id': fixture.get('fixture_id', fixture.get('id', 0)),
+                    'home_team': fixture.get('home_team', ''),
+                    'away_team': fixture.get('away_team', ''),
+                    'league': fixture.get('league_name', fixture.get('league', '')),
+                    'date': fixture.get('date', ''),
+                    'status': fixture.get('status', 'upcoming')
+                },
+                'predictions': {},
+                'betting_categories': {},
+                'model_summary': {
+                    'total_predictions': len(predictions),
+                    'successful_predictions': len(predictions)
+                }
+            }
+
+            # Convert predictions to expected format
+            for pred in predictions:
+                pred_type = pred['prediction_type']
+                fixture_predictions['predictions'][pred_type] = {
+                    'prediction': int(pred['prediction']),  # Convert numpy int64 to Python int
+                    'confidence': float(pred['confidence']),  # Convert numpy float64 to Python float
+                    'model_type': pred.get('model_type', 'enhanced')
+                }
+
+            return fixture_predictions
+
+        except Exception as e:
+            logger.error(f"Error predicting single fixture: {str(e)}")
+            return {"error": f"Prediction failed: {str(e)}"}
+
     def _models_exist(self) -> bool:
-        """Check if trained models exist."""
+        """Check if trained models exist (prioritize enhanced models)."""
         model_files = [
             'xgboost_match_result_model.joblib',
             'lightgbm_match_result_model.joblib',
-            'ensemble_match_result_model.joblib'
+            'ensemble_match_result_model.joblib',
+            'random_forest_match_result_model.joblib',
+            'neural_network_match_result_model.joblib'
         ]
 
+        # Check enhanced models first
+        enhanced_models_dir = "models_enhanced"
+        if os.path.exists(enhanced_models_dir):
+            for model_file in model_files:
+                if os.path.exists(os.path.join(enhanced_models_dir, model_file)):
+                    logger.info(f"✅ Found enhanced models in {enhanced_models_dir}")
+                    return True
+
+        # Fallback to basic models
         for model_file in model_files:
             if os.path.exists(os.path.join(settings.ml.MODEL_DIR, model_file)):
+                logger.info(f"✅ Found basic models in {settings.ml.MODEL_DIR}")
                 return True
 
         return False

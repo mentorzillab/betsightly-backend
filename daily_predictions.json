@@ -1,0 +1,255 @@
+{
+  "date": "2025-07-25",
+  "timestamp": "2025-07-25T14:32:43.047183",
+  "total_accumulators": 4,
+  "categories": {
+    "2_odds": {
+      "type": "accumulator",
+      "total_odds": 2.5600000000000005,
+      "combined_confidence": 72.24999999999999,
+      "game_count": 2,
+      "games": [
+        {
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Metaloglobus Bucharest Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
+          "league": "First League",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Arsenal Tula Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        }
+      ]
+    },
+    "5_odds": {
+      "type": "accumulator",
+      "total_odds": 4.096000000000001,
+      "combined_confidence": 61.412499999999994,
+      "game_count": 3,
+      "games": [
+        {
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Metaloglobus Bucharest Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
+          "league": "First League",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Arsenal Tula Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586749",
+          "home_team": "Aarhus",
+          "away_team": "Randers FC",
+          "league": "Superliga",
+          "date": "2025-07-25 19:00:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Aarhus Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        }
+      ]
+    },
+    "10_odds": {
+      "type": "accumulator",
+      "total_odds": 10.485760000000004,
+      "combined_confidence": 44.37053124999999,
+      "game_count": 5,
+      "games": [
+        {
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Metaloglobus Bucharest Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
+          "league": "First League",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Arsenal Tula Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586749",
+          "home_team": "Aarhus",
+          "away_team": "Randers FC",
+          "league": "Superliga",
+          "date": "2025-07-25 19:00:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Aarhus Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586751",
+          "home_team": "Horsens",
+          "away_team": "Kolding IF",
+          "league": "1. Division",
+          "date": "2025-07-25 19:00:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Horsens Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586752",
+          "home_team": "Lyngby",
+          "away_team": "B.93",
+          "league": "1. Division",
+          "date": "2025-07-25 19:00:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Lyngby Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        }
+      ]
+    },
+    "rollover": {
+      "type": "accumulator",
+      "total_odds": 2.5600000000000005,
+      "combined_confidence": 72.24999999999999,
+      "game_count": 2,
+      "games": [
+        {
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Metaloglobus Bucharest Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
+          "league": "First League",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Arsenal Tula Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        }
+      ]
+    }
+  }
+}

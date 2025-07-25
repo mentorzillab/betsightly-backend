@@ -1,0 +1,11 @@
+{
+  "creation_date": "2025-07-25T10:20:20.246746",
+  "total_games": 77512,
+  "total_features": 78,
+  "best_accuracy": 0.8163637124416379,
+  "best_model": "Ensemble",
+  "improvement_vs_baseline": 39.63637124416379,
+  "date_range": "2021-08-13 00:00:00 to 2025-06-25 22:30:00",
+  "unique_teams": 12957,
+  "unique_leagues": 1529
+}

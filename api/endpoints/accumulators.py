@@ -12,12 +12,16 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from services.daily_predictions_service import DailyPrediction, DailyPredictionSummary
-from services.accumulator_builder import AccumulatorBuilder, format_accumulator_for_display
+from services.accumulator_builder import AccumulatorBuilder
+from services.prediction_retrieval_service import PredictionRetrievalService
 
 # Set up logging
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
+# Initialize enhanced services
+retrieval_service = PredictionRetrievalService()
 
 @router.get("/today")
 def get_todays_accumulators(db: Session = Depends(get_db)):
@@ -113,6 +117,52 @@ def get_todays_accumulators(db: Session = Depends(get_db)):
         
     except Exception as e:
         logger.error(f"Error getting today's accumulators: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+@router.get("/today/enhanced")
+def get_todays_accumulators_enhanced():
+    """
+    Get today's accumulator bets from enhanced cache system (recommended).
+
+    Returns:
+        Enhanced accumulator combinations with full metadata and analytics
+    """
+    try:
+        # Use enhanced retrieval service
+        result = retrieval_service.get_daily_accumulators()
+
+        if result['status'] == 'success':
+            return {
+                "status": "success",
+                "date": result['date'],
+                "accumulators": result['accumulators'],
+                "total_categories": result['total_categories'],
+                "selected_count": result['selected_count'],
+                "data_source": "enhanced_cache",
+                "features": {
+                    "diversity_scoring": True,
+                    "risk_assessment": True,
+                    "result_tracking": True,
+                    "performance_analytics": True
+                }
+            }
+        elif result['status'] == 'error':
+            return {
+                "status": "error",
+                "error": result.get('error', 'Unknown error'),
+                "date": result.get('date'),
+                "accumulators": {}
+            }
+        else:
+            return {
+                "status": "not_found",
+                "message": f"No accumulators found for {result['date']}",
+                "date": result['date'],
+                "accumulators": {}
+            }
+
+    except Exception as e:
+        logger.error(f"Error getting enhanced accumulators: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
 @router.get("/2-odds")

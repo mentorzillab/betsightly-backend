@@ -11,15 +11,20 @@ from fastapi import APIRouter, HTTPException, Depends, Query, BackgroundTasks
 from sqlalchemy.orm import Session
 
 from database import get_db
-from services.daily_predictions_service import DailyPredictionsService, DailyPrediction, DailyPredictionSummary
+from services.daily_predictions_service import DailyPredictionsService
+from services.prediction_retrieval_service import PredictionRetrievalService
+from services.prediction_orchestrator import PredictionOrchestrator
+from services.daily_predictions_service import DailyPrediction, DailyPredictionSummary
 
 # Set up logging
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-# Initialize service
+# Initialize services
 daily_service = DailyPredictionsService()
+retrieval_service = PredictionRetrievalService()
+orchestrator = PredictionOrchestrator(auto_schedule=False)
 
 @router.get("/today")
 def get_todays_predictions_from_db(db: Session = Depends(get_db)):
@@ -54,9 +59,11 @@ def get_todays_predictions_from_db(db: Session = Depends(get_db)):
                 "predictions": []
             }
         
-        # Get predictions
+        # Get predictions - ONLY for upcoming games (not finished)
         predictions = db.query(DailyPrediction).filter(
-            DailyPrediction.prediction_date == today
+            DailyPrediction.prediction_date == today,
+            DailyPrediction.fixture_status.notin_(['Finished', 'FT', 'finished', 'completed', 'Full Time']),
+            DailyPrediction.fixture_date > datetime.now()
         ).all()
         
         # Format predictions
@@ -98,6 +105,54 @@ def get_todays_predictions_from_db(db: Session = Depends(get_db)):
         logger.error(f"Error getting today's predictions: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
+@router.get("/today/enhanced")
+def get_todays_predictions_enhanced():
+    """
+    Get today's predictions with comprehensive fixture information (recommended).
+
+    Returns:
+        Enhanced predictions with full fixture details, odds, times, and readable predictions
+    """
+    try:
+        # Use comprehensive retrieval service
+        result = retrieval_service.get_comprehensive_daily_predictions()
+
+        if result['status'] == 'success':
+            return {
+                "status": "success",
+                "date": result['date'],
+                "predictions": result['predictions'],
+                "total_predictions": result['total_predictions'],
+                "high_confidence_count": result['high_confidence_count'],
+                "summary": result['summary'],
+                "data_source": "comprehensive_cache",
+                "features": {
+                    "comprehensive_fixture_info": True,
+                    "readable_predictions": True,
+                    "confidence_levels": True,
+                    "odds_included": True,
+                    "match_times": True,
+                    "country_info": True,
+                    "feature_count": 62,
+                    "models_used": 18,
+                    "caching_enabled": True,
+                    "analytics_enabled": True,
+                    "result_tracking": True
+                }
+            }
+        else:
+            return {
+                "status": "error",
+                "error": result.get('error', 'No predictions found'),
+                "date": result.get('date'),
+                "predictions": [],
+                "suggestion": "Use POST /generate to create predictions for this date"
+            }
+
+    except Exception as e:
+        logger.error(f"Error getting comprehensive predictions: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
 @router.get("/categories")
 def get_betting_categories_from_db(db: Session = Depends(get_db)):
     """
@@ -109,9 +164,11 @@ def get_betting_categories_from_db(db: Session = Depends(get_db)):
     try:
         today = datetime.now().date()
         
-        # Get predictions
+        # Get predictions - ONLY for upcoming games (not finished)
         predictions = db.query(DailyPrediction).filter(
-            DailyPrediction.prediction_date == today
+            DailyPrediction.prediction_date == today,
+            DailyPrediction.fixture_status.notin_(['Finished', 'FT', 'finished', 'completed', 'Full Time']),
+            DailyPrediction.fixture_date > datetime.now()
         ).all()
         
         if not predictions:

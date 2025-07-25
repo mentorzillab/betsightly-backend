@@ -189,7 +189,7 @@ class Settings(BaseSettings):
     RATE_LIMIT_WINDOW: int = Field(60, description="Rate limit window in seconds")
 
     # Path settings
-    BASE_DIR: str = Field(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    BASE_DIR: str = Field(os.path.dirname(os.path.dirname(__file__)))
 
     # Component settings
     data_source: DataSourceSettings = DataSourceSettings()       # GitHub dataset for training
