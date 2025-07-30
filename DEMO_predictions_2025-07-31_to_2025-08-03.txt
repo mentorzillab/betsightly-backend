@@ -1,0 +1,102 @@
+🎯 BETSIGHTLY MULTI-DAY PREDICTIONS
+================================================================================
+
+📅 Generated: 2025-07-30 23:16:18 WAT
+🌍 Timezone: Nigeria (WAT - UTC+1)
+📊 Date Range: 2025-07-31 to 2025-08-03
+📈 Total Days: 4
+
+📋 SUMMARY
+----------------------------------------
+✅ Successful Days: 4/4
+🎯 Total Predictions: 5
+
+🎲 PREDICTIONS BY CATEGORY:
+   • 2.0 Odds (Very Low Risk): 2 predictions
+   • 5.0 Odds (Low Risk): 1 predictions
+   • 10.0 Odds (Medium Risk): 1 predictions
+   • Rollover/Accumulator (Very Low Risk): 1 predictions
+
+================================================================================
+
+📅 2025-07-31 (THURSDAY)
+============================================================
+✅ Status: SUCCESS
+🎯 Total Predictions: 2
+
+🎲 2.0 ODDS (VERY LOW RISK)
+----------------------------------------
+   1. Arsenal vs Chelsea
+      🏆 League: Premier League
+      📅 Date/Time: 2025-07-31 15:30:00 WAT (Thursday)
+      🎯 Prediction: Home Win
+      📊 Confidence: 75.0% (High)
+      💰 Odds: 2.10
+      ⚠️  Risk Level: Very Low Risk
+      💡 AI Reasoning: Available
+      🤖 Models Used: 9
+
+   2. Manchester City vs Liverpool
+      🏆 League: Premier League
+      📅 Date/Time: 2025-07-31 18:00:00 WAT (Thursday)
+      🎯 Prediction: Over 2.5 Goals
+      📊 Confidence: 68.0% (Medium)
+      💰 Odds: 1.80
+      ⚠️  Risk Level: Very Low Risk
+      💡 AI Reasoning: Available
+      🤖 Models Used: 9
+
+
+📅 2025-08-01 (FRIDAY)
+============================================================
+✅ Status: SUCCESS
+🎯 Total Predictions: 1
+
+🎲 5.0 ODDS (LOW RISK)
+----------------------------------------
+   1. Barcelona vs Real Madrid
+      🏆 League: La Liga
+      📅 Date/Time: 2025-08-01 20:00:00 WAT (Friday)
+      🎯 Prediction: BTTS Yes
+      📊 Confidence: 82.0% (Very High)
+      💰 Odds: 4.50
+      ⚠️  Risk Level: Low Risk
+      💡 AI Reasoning: Available
+      🤖 Models Used: 9
+
+
+📅 2025-08-02 (SATURDAY)
+============================================================
+✅ Status: SUCCESS
+🎯 Total Predictions: 1
+
+🎲 10.0 ODDS (MEDIUM RISK)
+----------------------------------------
+   1. Bayern Munich vs Borussia Dortmund
+      🏆 League: Bundesliga
+      📅 Date/Time: 2025-08-02 16:30:00 WAT (Saturday)
+      🎯 Prediction: Away Win
+      📊 Confidence: 55.0% (Low)
+      💰 Odds: 8.20
+      ⚠️  Risk Level: Medium Risk
+      💡 AI Reasoning: Available
+      🤖 Models Used: 9
+
+
+📅 2025-08-03 (SUNDAY)
+============================================================
+✅ Status: SUCCESS
+🎯 Total Predictions: 1
+
+🎲 ROLLOVER/ACCUMULATOR (VERY LOW RISK)
+----------------------------------------
+   1. Juventus vs AC Milan
+      🏆 League: Serie A
+      📅 Date/Time: 2025-08-03 14:00:00 WAT (Sunday)
+      🎯 Prediction: Draw
+      📊 Confidence: 72.0% (High)
+      💰 Odds: 2.80
+      ⚠️  Risk Level: Very Low Risk (Accumulator)
+      💡 AI Reasoning: Available
+      🤖 Models Used: 9
+

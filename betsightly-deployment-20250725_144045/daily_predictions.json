@@ -1,6 +1,6 @@
 {
   "date": "2025-07-25",
-  "timestamp": "2025-07-25T14:54:27.348873",
+  "timestamp": "2025-07-25T14:32:43.047183",
   "total_accumulators": 4,
   "categories": {
     "2_odds": {
@@ -10,14 +10,14 @@
       "game_count": 2,
       "games": [
         {
-          "fixture_id": "586736",
-          "home_team": "Botev Vratsa",
-          "away_team": "Ludogorets",
-          "league": "First League",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Botev Vratsa Win",
+            "value": "Metaloglobus Bucharest Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -28,14 +28,14 @@
           }
         },
         {
-          "fixture_id": "586782",
-          "home_team": "Erlbach",
-          "away_team": "Deisenhofen",
-          "league": "Oberliga - Bayern S\u00fcd",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
+          "league": "First League",
+          "date": "2025-07-25 18:45:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Erlbach Win",
+            "value": "Arsenal Tula Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -54,14 +54,32 @@
       "game_count": 3,
       "games": [
         {
-          "fixture_id": "586736",
-          "home_team": "Botev Vratsa",
-          "away_team": "Ludogorets",
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Metaloglobus Bucharest Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
           "league": "First League",
-          "date": "2025-07-25 19:30:00.000000",
+          "date": "2025-07-25 18:45:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Botev Vratsa Win",
+            "value": "Arsenal Tula Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -72,32 +90,14 @@
           }
         },
         {
-          "fixture_id": "586782",
-          "home_team": "Erlbach",
-          "away_team": "Deisenhofen",
-          "league": "Oberliga - Bayern S\u00fcd",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586749",
+          "home_team": "Aarhus",
+          "away_team": "Randers FC",
+          "league": "Superliga",
+          "date": "2025-07-25 19:00:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Erlbach Win",
-            "confidence": 85.0,
-            "individual_odds": 1.6
-          },
-          "market_odds": {
-            "home": 2.0,
-            "draw": 3.0,
-            "away": 2.0
-          }
-        },
-        {
-          "fixture_id": "586844",
-          "home_team": "Rapperswil-Jona",
-          "away_team": "Etoile-Carouge",
-          "league": "Challenge League",
-          "date": "2025-07-25 19:30:00.000000",
-          "prediction": {
-            "type": "match_result",
-            "value": "Rapperswil-Jona Win",
+            "value": "Aarhus Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -116,14 +116,32 @@
       "game_count": 5,
       "games": [
         {
-          "fixture_id": "586736",
-          "home_team": "Botev Vratsa",
-          "away_team": "Ludogorets",
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
+          "prediction": {
+            "type": "match_result",
+            "value": "Metaloglobus Bucharest Win",
+            "confidence": 85.0,
+            "individual_odds": 1.6
+          },
+          "market_odds": {
+            "home": 2.0,
+            "draw": 3.0,
+            "away": 2.0
+          }
+        },
+        {
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
           "league": "First League",
-          "date": "2025-07-25 19:30:00.000000",
+          "date": "2025-07-25 18:45:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Botev Vratsa Win",
+            "value": "Arsenal Tula Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -134,14 +152,14 @@
           }
         },
         {
-          "fixture_id": "586782",
-          "home_team": "Erlbach",
-          "away_team": "Deisenhofen",
-          "league": "Oberliga - Bayern S\u00fcd",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586749",
+          "home_team": "Aarhus",
+          "away_team": "Randers FC",
+          "league": "Superliga",
+          "date": "2025-07-25 19:00:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Erlbach Win",
+            "value": "Aarhus Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -152,14 +170,14 @@
           }
         },
         {
-          "fixture_id": "586844",
-          "home_team": "Rapperswil-Jona",
-          "away_team": "Etoile-Carouge",
-          "league": "Challenge League",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586751",
+          "home_team": "Horsens",
+          "away_team": "Kolding IF",
+          "league": "1. Division",
+          "date": "2025-07-25 19:00:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Rapperswil-Jona Win",
+            "value": "Horsens Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -170,32 +188,14 @@
           }
         },
         {
-          "fixture_id": "586845",
-          "home_team": "Xamax",
-          "away_team": "Stade Nyonnais",
-          "league": "Challenge League",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586752",
+          "home_team": "Lyngby",
+          "away_team": "B.93",
+          "league": "1. Division",
+          "date": "2025-07-25 19:00:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Xamax Win",
-            "confidence": 85.0,
-            "individual_odds": 1.6
-          },
-          "market_odds": {
-            "home": 2.0,
-            "draw": 3.0,
-            "away": 2.0
-          }
-        },
-        {
-          "fixture_id": "586889",
-          "home_team": "KRC Harelbeke",
-          "away_team": "Kortrijk",
-          "league": "Club Friendlies - Club Friendlies 5",
-          "date": "2025-07-25 19:30:00.000000",
-          "prediction": {
-            "type": "match_result",
-            "value": "KRC Harelbeke Win",
+            "value": "Lyngby Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -214,14 +214,14 @@
       "game_count": 2,
       "games": [
         {
-          "fixture_id": "586736",
-          "home_team": "Botev Vratsa",
-          "away_team": "Ludogorets",
-          "league": "First League",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586822",
+          "home_team": "Metaloglobus Bucharest",
+          "away_team": "Petrolul",
+          "league": "Liga I",
+          "date": "2025-07-25 18:45:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Botev Vratsa Win",
+            "value": "Metaloglobus Bucharest Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
@@ -232,14 +232,14 @@
           }
         },
         {
-          "fixture_id": "586782",
-          "home_team": "Erlbach",
-          "away_team": "Deisenhofen",
-          "league": "Oberliga - Bayern S\u00fcd",
-          "date": "2025-07-25 19:30:00.000000",
+          "fixture_id": "586825",
+          "home_team": "Arsenal Tula",
+          "away_team": "Shinnik Yaroslavl",
+          "league": "First League",
+          "date": "2025-07-25 18:45:00.000000",
           "prediction": {
             "type": "match_result",
-            "value": "Erlbach Win",
+            "value": "Arsenal Tula Win",
             "confidence": 85.0,
             "individual_odds": 1.6
           },
