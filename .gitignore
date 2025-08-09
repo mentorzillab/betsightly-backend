@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+
+# Cache
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ML models (optional, depending on your strategy)
+# models/
+
+# Data files (optional, depending on your strategy)
+# data/
+
+# Large model files and data files for GitHub push
+models/*.pkl
+models/*.joblib
+data/*.pkl
+data/*.csv
+data/github/*.csv
+data/optimal/*.pkl
+cache/*.pkl
+cache/*.json
+*.db-shm
+*.db-wal
+
+# Large backup directories
+comprehensive_backup_*/
+betsightly-deployment-*/
+
+# Large data directories
+data_archive/
+punter_cache/
+
+# Temporary files
+.DS_Store
+Thumbs.db
